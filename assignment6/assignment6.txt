@@ -1,0 +1,306 @@
+<html><head><title>Assignment 6</title></head><body>
+
+<form action="http://students.cs.niu.edu/~z1863905/assignment6.php" method="GET">
+
+	<select size=3 name="SelectTable">
+		<option value="P">P</option> Show Parts
+		<option value="S">S</option> Show Suppliers
+	</select>
+
+	<select size=7 name="SelectPart">
+		<option value="P1">P1</option> Show P1
+		<option value="P2">P2</option> Show P2
+		<option value="P3">P3</option> Show P3
+		<option value="P4">P4</option> Show P4
+		<option value="P5">P5</option> Show P5
+		<option value="P6">P6</option> Show P6
+	</select>
+
+	<select size=6 name="SelectSupplier">
+		<option value="S1">S1</option> Show S1
+		<option value="S2">S2</option> Show S2
+		<option value="S3">S3</option> Show S3
+		<option value="S4">S4</option> Show S4
+		<option value="S5">S5</option> Show S5
+	</select>
+
+	<br/>
+
+	<input type="text" name="AddPartNum" value="Add new Part Num"/>
+	<input type="text" name="AddPartName" value="Add new Part Name"/>
+	<input type="text" name="AddPartColor" value="Add new Part Color"/>
+	<input type="text" name="AddPartWeight" value="Add new Part Weight"/>
+
+	<br/>
+
+	<input type="text" name="AddSupplierNum" value="Add new Supplier Num"/>
+	<input type="text" name="AddSupplierName" value="Add new Supplier Name"/>
+	<input type="text" name="AddSupplierStatus" value="Add new Supplier Status"/>
+	<input type="text" name="AddSupplierCity" value="Add new Supplier City"/>	
+
+	<br/>
+
+	<input type="submit" value="Submit"/>
+	<input type="reset" value="Reset"/> <br/>
+
+</form>
+
+<?php
+
+function draw_table($rows)
+{
+	if(empty($rows))
+	{
+		echo "<p>No results found.</p>";
+	}
+	else 
+	{
+		echo "<table border=1 cellspacing=1>";
+		echo "<tr>";
+		foreach($rows[0] as $key => $item)
+		{
+			echo "<th>$key</th>";
+		}
+		echo "</tr>";
+		foreach($rows as $row) 
+		{
+			echo "<tr>";
+			foreach($row as $key => $item)
+			{
+				echo "<td>$item</td>";
+			}
+			echo "</tr>";
+		}
+		echo "</table>";
+	}
+}
+
+include("secrets.php");
+
+try
+{
+	$dsn = "mysql:host=courses;dbname=z1863905";
+	$pdo = new PDO($dsn, $username, $password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+	if ($_GET["SelectTable"] == "P")
+	{
+		$sql = 'SELECT * FROM P';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P1"));
+		$rows = $prepared->fetchALL(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectTable"] == "S")
+	{
+		$sql = 'SELECT * FROM S';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S1"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+
+	if($_GET["SelectPart"] == "P1")
+	{
+		$sql = 'SELECT * FROM SP WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P1"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM P WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P1"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectPart"] == "P2")
+	{
+		$sql = 'SELECT * FROM SP WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P2"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM P WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P2"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectPart"] == "P3")
+	{
+		$sql = 'SELECT * FROM SP WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P3"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM P WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P3"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectPart"] == "P4")
+	{
+		$sql = 'SELECT * FROM SP WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P4"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM P WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P4"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectPart"] == "P5")
+	{
+		$sql = 'SELECT * FROM SP WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P5"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM P WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P5"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectPart"] == "P6")
+	{
+		$sql = 'SELECT * FROM SP WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P6"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM P WHERE P_NUM=:P_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":P_NUM" => "P6"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+
+	if($_GET["SelectSupplier"] == "S1")
+	{
+		$sql = 'SELECT * FROM SP WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S1"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM S WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S1"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectSupplier"] == "S2")
+	{
+		$sql = 'SELECT * FROM SP WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S2"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM S WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S2"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectSupplier"] == "S3")
+	{
+		$sql = 'SELECT * FROM SP WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S3"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM S WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S3"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectSupplier"] == "S4")
+	{
+		$sql = 'SELECT * FROM SP WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S4"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM S WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S4"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+	else if($_GET["SelectSupplier"] == "S5")
+	{
+		$sql = 'SELECT * FROM SP WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S5"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+
+		$sql = 'SELECT * FROM S WHERE S_NUM=:S_NUM';
+		$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$success = $prepared->execute(array(":S_NUM" => "S5"));
+		$rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+		draw_table($rows);
+	}
+
+	if ($_GET["AddPartNum"] != "Add new Part Num" || $_GET["AddPartName"] != "Add new Part Name" ||
+		$_GET["AddPartColor"] != "Add new Part Color" || $_GET["AddPartWeight"] != "Add new Part Weight")
+	{
+		if ($_GET["AddPartNum"] != NULL || $_GET["AddPartName"] != NULL ||
+			$_GET["AddPartColor"] != NULL || $_GET["AddPartWeight"] != NULL)
+		{
+			$sql = 'INSERT INTO P (P_NUM, PNAME, COLOR, WEIGHT)
+				VALUES (:P_NUM, :PNAME, :COLOR, :WEIGHT)';
+			$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+			$success = $prepared->execute(array(":P_NUM" => $_GET["AddPartNum"], "PNAME" => $_GET["AddPartName"],
+							":WEIGHT" => $_GET["AddPartWeight"], ":COLOR" => $_GET["AddPartColor"]));
+			$rows = $prepared->fetchALL(PDO::FETCH_ASSOC);
+			draw_table($rows);
+		}
+		else
+		{
+			echo "Not all Forms for Parts validly filled.";
+		}
+	}
+
+	if ($_GET["AddSupplierNum"] != "Add new Supplier Num" || $_GET["AddSupplierName"] != "Add new Supplier Name" ||
+		$_GET["AddSupplierStatus"] != "Add new Supplier Status" || $_GET["AddSupplierCity"] != "Add new Supplier City")
+	{
+		if ($_GET["AddSupplierNum"] != NULL || $_GET["AddSupplierName"] != NULL ||
+			$_GET["AddSupplierStatus"] != NULL | $_GET["AddSupplierCity"] != NULL)
+		{
+			$sql = 'INSERT INTO S (S_NUM, SNAME, STATUS, CITY)
+				VALUES (:S_NUM, :SNAME, :STATUS, :CITY)';
+			$prepared = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+			$success = $prepared->execute(array(":S_NUM" => $_GET["AddSupplierNum"], ":SNAME" => $_GET["AddSupplierName"],
+							":STATUS" => $_GET["AddSupplierStatus"], ":CITY" => $_GET["AddSupplierCity"]));
+			$rows = $prepared->fetchALL(PDO::FETCH_ASSOC);
+			draw_table($rows);
+		}
+		else
+		{
+			echo "Not all Forms for Supplier validly filled.";
+		}
+	}
+}
+
+catch(PDOexception $e)
+{
+	echo "Connection to database failed: " . $e->getMessage();
+}
+	
+?>
+</body></html>
