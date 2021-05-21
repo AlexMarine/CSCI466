@@ -1,0 +1,337 @@
+MariaDB [(none)]> USE BabyName;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [BabyName]> SHOW TABLES;
++--------------------+
+| Tables_in_BabyName |
++--------------------+
+| BabyName           |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [BabyName]> DESC BabyName;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(15) | NO   | PRI | NULL    |       |
+| count  | int(11)     | YES  |     | NULL    |       |
+| gender | char(1)     | NO   | PRI | NULL    |       |
+| year   | smallint(6) | NO   | PRI | NULL    |       |
+| place  | char(2)     | NO   | PRI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [BabyName]> SELECT DISTINCT name, year FROM BabyName WHERE name = 'Alex' LIMIT 50;
++------+------+
+| name | year |
++------+------+
+| Alex | 1915 |
+| Alex | 1916 |
+| Alex | 1917 |
+| Alex | 1918 |
+| Alex | 1919 |
+| Alex | 1920 |
+| Alex | 1921 |
+| Alex | 1922 |
+| Alex | 1923 |
+| Alex | 1924 |
+| Alex | 1925 |
+| Alex | 1926 |
+| Alex | 1927 |
+| Alex | 1928 |
+| Alex | 1929 |
+| Alex | 1930 |
+| Alex | 1931 |
+| Alex | 1932 |
+| Alex | 1933 |
+| Alex | 1934 |
+| Alex | 1935 |
+| Alex | 1937 |
+| Alex | 1938 |
+| Alex | 1939 |
+| Alex | 1940 |
+| Alex | 1942 |
+| Alex | 1943 |
+| Alex | 1944 |
+| Alex | 1947 |
+| Alex | 1948 |
+| Alex | 1949 |
+| Alex | 1950 |
+| Alex | 1951 |
+| Alex | 1952 |
+| Alex | 1953 |
+| Alex | 1954 |
+| Alex | 1955 |
+| Alex | 1956 |
+| Alex | 1957 |
+| Alex | 1958 |
+| Alex | 1959 |
+| Alex | 1960 |
+| Alex | 1961 |
+| Alex | 1962 |
+| Alex | 1963 |
+| Alex | 1964 |
+| Alex | 1965 |
+| Alex | 1966 |
+| Alex | 1967 |
+| Alex | 1968 |
++------+------+
+50 rows in set (0.003 sec)
+
+MariaDB [BabyName]> SELECT DISTINCT name, year FROM BabyName WHERE year = '1998' LIMIT 50;
++--------------+------+
+| name         | year |
++--------------+------+
+| Aadam        | 1998 |
+| Aadil        | 1998 |
+| Aaditya      | 1998 |
+| Aailyah      | 1998 |
+| Aaisha       | 1998 |
+| Aajah        | 1998 |
+| Aakash       | 1998 |
+| Aalayah      | 1998 |
+| Aaleah       | 1998 |
+| Aaleyah      | 1998 |
+| Aalia        | 1998 |
+| Aaliah       | 1998 |
+| Aaliayah     | 1998 |
+| Aaliya       | 1998 |
+| Aaliyah      | 1998 |
+| Aaliyha      | 1998 |
+| Aalliyah     | 1998 |
+| Aalyah       | 1998 |
+| Aalyiah      | 1998 |
+| Aamina       | 1998 |
+| Aaminah      | 1998 |
+| Aamir        | 1998 |
+| Aanchal      | 1998 |
+| Aanisah      | 1998 |
+| Aaniyah      | 1998 |
+| Aanya        | 1998 |
+| Aanyah       | 1998 |
+| Aaran        | 1998 |
+| Aaren        | 1998 |
+| Aareon       | 1998 |
+| Aariana      | 1998 |
+| Aarianna     | 1998 |
+| Aaric        | 1998 |
+| Aariel       | 1998 |
+| Aarika       | 1998 |
+| Aarin        | 1998 |
+| Aarion       | 1998 |
+| Aariona      | 1998 |
+| Aarionna     | 1998 |
+| Aaris        | 1998 |
+| Aarohi       | 1998 |
+| Aaron        | 1998 |
+| Aaronmichael | 1998 |
+| Aarron       | 1998 |
+| Aarthi       | 1998 |
+| Aarti        | 1998 |
+| Aaryn        | 1998 |
+| Aasha        | 1998 |
+| Aashna       | 1998 |
+| Aasim        | 1998 |
++--------------+------+
+50 rows in set (0.002 sec)
+
+MariaDB [BabyName]> SELECT DISTINCT(name), year, gender, count FROM BabyName WHERE year = '1998' GROUP BY count DESC LIMIT 50;
++-------------+------+--------+-------+
+| name        | year | gender | count |
++-------------+------+--------+-------+
+| Michael     | 1998 | M      | 36615 |
+| Jacob       | 1998 | M      | 36007 |
+| Matthew     | 1998 | M      | 31138 |
+| Joshua      | 1998 | M      | 28086 |
+| Christopher | 1998 | M      | 26999 |
+| Nicholas    | 1998 | M      | 26632 |
+| Emily       | 1998 | F      | 26179 |
+| Brandon     | 1998 | M      | 23828 |
+| Tyler       | 1998 | M      | 23711 |
+| Andrew      | 1998 | M      | 23648 |
+| Austin      | 1998 | M      | 23477 |
+| Joseph      | 1998 | M      | 23173 |
+| Daniel      | 1998 | M      | 23143 |
+| Hannah      | 1998 | F      | 21374 |
+| David       | 1998 | M      | 20871 |
+| William     | 1998 | M      | 20827 |
+| John        | 1998 | M      | 20615 |
+| Zachary     | 1998 | M      | 20579 |
+| Ryan        | 1998 | M      | 20194 |
+| Samantha    | 1998 | F      | 20192 |
+| Sarah       | 1998 | F      | 19873 |
+| Ashley      | 1998 | F      | 19871 |
+| Alexis      | 1998 | F      | 19778 |
+| James       | 1998 | M      | 19683 |
+| Anthony     | 1998 | M      | 19627 |
+| Taylor      | 1998 | F      | 18572 |
+| Jessica     | 1998 | F      | 18233 |
+| Justin      | 1998 | M      | 17970 |
+| Madison     | 1998 | F      | 17785 |
+| Jonathan    | 1998 | M      | 17645 |
+| Alexander   | 1998 | M      | 17464 |
+| Robert      | 1998 | M      | 15524 |
+| Kyle        | 1998 | M      | 15276 |
+| Elizabeth   | 1998 | F      | 15179 |
+| Dylan       | 1998 | M      | 14540 |
+| Christian   | 1998 | M      | 14507 |
+| Jordan      | 1998 | M      | 14409 |
+| Samuel      | 1998 | M      | 13895 |
+| Alyssa      | 1998 | F      | 13710 |
+| Kayla       | 1998 | F      | 13422 |
+| Noah        | 1998 | M      | 13408 |
+| Megan       | 1998 | F      | 13254 |
+| Benjamin    | 1998 | M      | 13054 |
+| Lauren      | 1998 | F      | 12907 |
+| Thomas      | 1998 | M      | 12885 |
+| Kevin       | 1998 | M      | 12507 |
+| Jose        | 1998 | M      | 12368 |
+| Rachel      | 1998 | F      | 12194 |
+| Victoria    | 1998 | F      | 12144 |
+| Brianna     | 1998 | F      | 12046 |
++-------------+------+--------+-------+
+50 rows in set (0.820 sec)
+
+MariaDB [BabyName]> SELECT name, count, year FROM BabyName WHERE name LIKE 'Al%' ORDER BY name, count, year LIMIT 50;
++------+-------+------+
+| name | count | year |
++------+-------+------+
+| Al   |     5 | 1910 |
+| Al   |     5 | 1911 |
+| Al   |     5 | 1911 |
+| Al   |     5 | 1912 |
+| Al   |     5 | 1912 |
+| Al   |     5 | 1913 |
+| Al   |     5 | 1914 |
+| Al   |     5 | 1914 |
+| Al   |     5 | 1914 |
+| Al   |     5 | 1914 |
+| Al   |     5 | 1914 |
+| Al   |     5 | 1915 |
+| Al   |     5 | 1915 |
+| Al   |     5 | 1915 |
+| Al   |     5 | 1915 |
+| Al   |     5 | 1915 |
+| Al   |     5 | 1915 |
+| Al   |     5 | 1916 |
+| Al   |     5 | 1916 |
+| Al   |     5 | 1917 |
+| Al   |     5 | 1917 |
+| Al   |     5 | 1917 |
+| Al   |     5 | 1917 |
+| Al   |     5 | 1917 |
+| Al   |     5 | 1918 |
+| Al   |     5 | 1918 |
+| Al   |     5 | 1918 |
+| Al   |     5 | 1918 |
+| Al   |     5 | 1919 |
+| Al   |     5 | 1919 |
+| Al   |     5 | 1919 |
+| Al   |     5 | 1921 |
+| Al   |     5 | 1921 |
+| Al   |     5 | 1923 |
+| Al   |     5 | 1924 |
+| Al   |     5 | 1924 |
+| Al   |     5 | 1925 |
+| Al   |     5 | 1925 |
+| Al   |     5 | 1925 |
+| Al   |     5 | 1925 |
+| Al   |     5 | 1925 |
+| Al   |     5 | 1926 |
+| Al   |     5 | 1926 |
+| Al   |     5 | 1926 |
+| Al   |     5 | 1927 |
+| Al   |     5 | 1927 |
+| Al   |     5 | 1927 |
+| Al   |     5 | 1927 |
+| Al   |     5 | 1927 |
+| Al   |     5 | 1927 |
++------+-------+------+
+50 rows in set (0.198 sec)
+
+MariaDB [BabyName]> SELECT COUNT(*) from BabyName;
++----------+
+| COUNT(*) |
++----------+
+|  7601706 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [BabyName]> SELECT year, COUNT(name) FROM BabyName WHERE year = '1963';
++------+-------------+
+| year | COUNT(name) |
++------+-------------+
+| 1963 |       65224 |
++------+-------------+
+1 row in set (0.027 sec)
+
+MariaDB [BabyName]> SELECT year, COUNT(name) FROM BabyName WHERE year = '1953' GROUP BY gender;
++------+-------------+
+| year | COUNT(name) |
++------+-------------+
+| 1953 |       32685 |
+| 1953 |       24840 |
++------+-------------+
+2 rows in set (0.047 sec)
+
+MariaDB [BabyName]> SELECT place, COUNT(DISTINCT name) FROM BabyName GROUP BY place;
++-------+----------------------+
+| place | COUNT(DISTINCT name) |
++-------+----------------------+
+| AK    |                 1583 |
+| AL    |                 6501 |
+| AR    |                 4825 |
+| AZ    |                 5500 |
+| CA    |                18986 |
+| CO    |                 4953 |
+| CT    |                 3531 |
+| DC    |                 2622 |
+| DE    |                 1677 |
+| FL    |                10820 |
+| GA    |                 9467 |
+| HI    |                 2870 |
+| IA    |                 4257 |
+| ID    |                 2874 |
+| IL    |                10847 |
+| IN    |                 6392 |
+| KS    |                 4359 |
+| KY    |                 5178 |
+| LA    |                 6957 |
+| MA    |                 5185 |
+| MD    |                 5455 |
+| ME    |                 2146 |
+| MI    |                 8567 |
+| MN    |                 5374 |
+| MO    |                 6301 |
+| MS    |                 5486 |
+| MT    |                 2188 |
+| NC    |                 8598 |
+| ND    |                 2282 |
+| NE    |                 3383 |
+| NH    |                 1756 |
+| NJ    |                 7428 |
+| NM    |                 3333 |
+| NV    |                 2861 |
+| NY    |                14101 |
+| OH    |                 9066 |
+| OK    |                 5548 |
+| OR    |                 4143 |
+| PA    |                 8851 |
+| RI    |                 1795 |
+| SC    |                 5632 |
+| SD    |                 2289 |
+| TN    |                 6750 |
+| TX    |                16768 |
+| US    |                95025 |
+| UT    |                 4489 |
+| VA    |                 7093 |
+| VT    |                 1358 |
+| WA    |                 5922 |
+| WI    |                 5369 |
+| WV    |                 3261 |
+| WY    |                 1524 |
++-------+----------------------+
+52 rows in set (0.000 sec)
+
